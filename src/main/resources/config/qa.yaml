@@ -1,0 +1,7 @@
+#qa environment property
+http: 
+  port: "8083"
+ 
+api:
+  name: "dart-cicd-demo-api"
+  Id: "18195359"

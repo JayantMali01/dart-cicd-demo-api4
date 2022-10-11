@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd ">
+ <flow name="sample-api-main">
+        <http:listener config-ref="sample-api-httpListenerConfig" path="/api/*" doc:name="Listener">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <logger level="INFO" doc:name="Log INBOUND" doc:id="15ddbc69-6405-4098-8ad2-f00a386022d9" message="before apikit router" category="INBOUND"/>
+		<apikit:router config-ref="sample-api-config" />
+    </flow>
+    <flow name="get:\ping:sample-api-config">
+		<flow-ref doc:name="refer get-ping-subflow" doc:id="eb5ee04e-21eb-4729-be79-ddfa388f1264" name="get-ping-subflow"/>
+    </flow>
+</mule>

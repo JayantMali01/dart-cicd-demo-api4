@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="get-ping-subflow" doc:id="0194ae8a-359f-40ab-95ac-3d477c11a847" >
+		<logger level="INFO" doc:name="Log start of get ping subflow" doc:id="fb080bd0-9159-4b02-b7fe-59eb39343548" message="start of get ping subflow" category="START"/>
+		<ee:transform doc:name="DW Success Response" doc:id="5a031d21-7092-4808-9dc4-082551474087" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    message: p('secure::secure.message'),
+    Info: "All connected System are up and running",
+    timeStamp: now(),
+    status: "success",
+    apiName: p('api.name'),
+    'environment': p('mule.env'),
+    code: 200
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Log end of get ping subflow" doc:id="7a21df07-aa61-4dd6-8fbc-a736d3364141" message="end of get ping subflow." category="END"/>
+	</sub-flow>
+</mule>

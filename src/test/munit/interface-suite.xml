@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="interface-suite.xml" />
+	<munit:test name="ping-success-testcase" doc:id="86baba57-e28c-49c3-8850-a749b3173906" >
+		<munit:behavior >
+			<munit:set-event doc:name="Set Input" doc:id="bb50697b-7345-4819-80db-87785e17d958" >
+				<munit:payload value="#[readUrl('classpath://pingsuccesstestcase\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://pingsuccesstestcase\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://pingsuccesstestcase\set-event_variable_.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\ping:sample-api-config" doc:id="13ca2ec8-1c38-45b4-bbd5-177d3dce4a08" name="get:\ping:sample-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="b99b2502-9b20-4ebc-a009-403a229343ff" actual="#[payload.status]" expected='#["success"]'/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
