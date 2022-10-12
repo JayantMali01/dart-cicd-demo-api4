@@ -1,6 +1,7 @@
 def BRANCH = scm.branches[0].name
 pipeline 
 {
+	
 	agent any
 	environment 
 	{ 			
