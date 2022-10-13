@@ -19,9 +19,9 @@ pipeline
 						BRANCH = scm.branches[0].name
 						
 					}
-          			switch(BRANCH) 
+          				switch(BRANCH) 
 					{
-            			case 'develop':
+            					case 'develop':
 							mule_env = 'dev'
 							cloudhub_env = 'DEV'
 							env_suffix = '-dev'
