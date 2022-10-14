@@ -21,7 +21,7 @@ pipeline
 						BRANCH = scm.branches[0].name	
 						
 					}
-          			switch(BRANCH) 
+          				switch(BRANCH) 
 					{
             			      		case 'develop':
 							mule_env = 'dev'
