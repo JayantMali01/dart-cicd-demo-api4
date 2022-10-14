@@ -1,4 +1,6 @@
+def webhook = $
 def BRANCH = scm.branches[0].name
+
 pipeline 
 {
 	agent any
@@ -53,8 +55,8 @@ pipeline
 				echo "environment ${mule_env}"
 				echo "cloudhub env ${cloudhub_env}"
 				echo "suffix ${env_suffix}"
-				$webhookres = "$"
-				echo $webhookers
+				
+				echo " webhook : ${webhook}"
 				bat 'mvn clean install -DskipTests'
 			
 			}
