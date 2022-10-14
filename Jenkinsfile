@@ -53,6 +53,8 @@ pipeline
 				echo "environment ${mule_env}"
 				echo "cloudhub env ${cloudhub_env}"
 				echo "suffix ${env_suffix}"
+				$webhookres = "$"
+				echo $webhookers
 				bat 'mvn clean install -DskipTests'
 			
 			}
