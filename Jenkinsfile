@@ -56,7 +56,6 @@ pipeline
 				echo "cloudhub env ${cloudhub_env}"
 				echo "suffix ${env_suffix}"
 				
-				echo "env:  ${env.getEnvironment()}"
 				bat 'mvn clean install -DskipTests'
 			
 			}
