@@ -5,6 +5,7 @@ pipeline
 	environment 
 	{ 			
 		SECRET_KEY = credentials('secretKey')
+		
 	}
 	stages 
 	{
